@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Lap Counter demo</title>
+  <meta name="description" content="Lap Counter demo">
+  <meta name="author" content="Alex Mattson">
+
+</head>
+<body>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <h1>Lap Counter</h1>
+  <p id="lapCount"></p>
+  <p id="currentTime"></p>
+
+  <script>
+  // replace with your API url
+  var myUrl = "https://xtlmpi0jof.execute-api.us-west-2.amazonaws.com/test";
+  var myVar = setInterval(lapCountFunc, 1000);
+
+  function lapCountFunc() {
+      var d = new Date();
+      function createCORSRequest(method, url) {
+        var xhr = new XMLHttpRequest();
+        if ("withCredentials" in xhr) {
+
+          // Check if the XMLHttpRequest object has a "withCredentials" property.
+          // "withCredentials" only exists on XMLHTTPRequest2 objects.
+          xhr.open(method, url, true);
+
+        } else if (typeof XDomainRequest != "undefined") {
+
+          // Otherwise, check if XDomainRequest.
+          // XDomainRequest only exists in IE, and is IE's way of making CORS requests.
+          xhr = new XDomainRequest();
+          xhr.open(method, url);
+
+        } else {
+
+          // Otherwise, CORS is not supported by the browser.
+          xhr = null;
+
+        }
+        return xhr;
+      }
+
+      var xhr = createCORSRequest('GET', myUrl);
+      if (!xhr) {
+        throw new Error('CORS not supported');
+      }
+
+      xhr.onload = function() {
+       var responseText = xhr.responseText;
+       console.log(responseText);
+       document.getElementById("lapCount").innerHTML = responseText;
+       // process the response.
+      };
+
+      xhr.onerror = function() {
+        console.log('There was an error!');
+      };
+      xhr.send();
+
+      document.getElementById("currentTime").innerHTML = d.toLocaleTimeString();
+  }
+  </script>
+
+</body>
+</html>
