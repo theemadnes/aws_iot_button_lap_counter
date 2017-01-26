@@ -5,10 +5,10 @@ simple example of using the IoT button to record lap counts over wifi to the clo
 Uses the following AWS services / components:
 
 - AWS IoT Button - each click sends a "lap" to AWS
-- DynamoDB button - maintains counter of laps
+- DynamoDB table - maintains counter of laps
 - S3 - hosts single page application dashboard
 - Lambda - two functions; one receives event from IoT Button and updates the DynamoDB table, and the other backs the API and returns data from DynamoDB
-- API Gateway - presents lap count programatically
+- API Gateway - presents lap count via RESTful API
 
 ## User guide (to be completed later)
 
