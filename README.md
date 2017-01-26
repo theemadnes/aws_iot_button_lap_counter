@@ -13,7 +13,7 @@ Uses the following AWS services / components:
 ## User guide (to be completed later)
 
 - get your IoT Button set up using the AWS IoT Button Getting Started walkthrough
-- - to get more familiar, try the walkthrough demo to send emails on button press events (but make sure to disable the trigger of that lambda function so you don't continue to get emails in the future)
+- to get more familiar, try the walkthrough demo to send emails on button press events (but make sure to disable the trigger of that lambda function so you don't continue to get emails in the future)
 - provision your CloudFormation stack with template.yml, providing your button DSN as a parameter
 - update the "myUrl" variable in index.html to point to the URL of your API. This can be found in the API gateway console -> API name -> Stages -> Prod -> Invoke URL. Overwrite the existing myUrl value with this value.
 - upload index.html and favicon.ico to the S3 bucket that gets created, enabling public permissions to those files and enabling static website hosting for the bucket, and pointing to index.html
